@@ -17,11 +17,11 @@ const config = require(path.join(__dirname, 'loadConfig'))();
 log('config =', config);
 
 const webpackConfigPath = (dir, type) => {
-    return path.join(dir, `/../../node_modules/react-scripts/config/webpack.config.${type}.js`);
+    return path.join(dir, `/../../node_modules/react-scripts/config/webpack.config.js`);
 }
 
 const webpackBackupPath = (dir, type) => {
-    return path.join(dir, `/../../node_modules/react-scripts/config/backup.webpack.config.${type}.js`);
+    return path.join(dir, `/../../node_modules/react-scripts/config/backup.webpack.config.js`);
 }
 
 const reactScriptsPath = (dir) => {
