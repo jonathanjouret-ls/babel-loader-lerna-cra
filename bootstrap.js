@@ -24,11 +24,12 @@ const webpackBackupPath = (dir, type) => {
     return path.join(dir, `/../../node_modules/react-scripts/config/backup.webpack.config.js`);
 }
 
-const reactScriptsPath = (dir) => {
-    return path.join(dir, `/../../node_modules/react-scripts`);
-}
-
 const prettyAppPath = uglyPath => 
+log()
+log(`config.lernaRoot = ${config.lernaRoot}`)
+log()
+log(`uglyPath = ${uglyPath}`)
+log()
     path.parse(path.relative(config.lernaRoot, uglyPath)).dir
     .replace(/^packages\//, '')
     .replace(/\/node_modules\/react-scripts\/config/, '');
@@ -36,10 +37,9 @@ const prettyAppPath = uglyPath =>
 const prettyFile = uglyPath => path.parse(uglyPath).base;
 
 const linkOverride = (reactAppDir, type) => {
-    const createReactPath = reactScriptsPath(reactAppDir);
     const configFile = webpackConfigPath(reactAppDir, type);
     const configBackup = webpackBackupPath(reactAppDir, type);
-    if(fs.existsSync(createReactPath)){
+    
         if (fs.existsSync(configBackup)) {
             // Backup already exists, copy cancelled.
         } else {
@@ -58,7 +58,7 @@ const linkOverride = (reactAppDir, type) => {
         }
 
         fs.copySync(webpackReplacementPath, configFile, {overwrite: true});
-    }
+    
 
     console.log();
 }
