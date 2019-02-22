@@ -25,11 +25,6 @@ const webpackBackupPath = (dir, type) => {
 }
 
 const prettyAppPath = uglyPath => 
-log()
-log(`config.lernaRoot = ${config.lernaRoot}`)
-log()
-log(`uglyPath = ${uglyPath}`)
-log()
     path.parse(path.relative(config.lernaRoot, uglyPath)).dir
     .replace(/^packages\//, '')
     .replace(/\/node_modules\/react-scripts\/config/, '');

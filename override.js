@@ -6,9 +6,13 @@ const lernaRoot = require(path.join(__dirname, 'getLernaRoot'))();
 const lernaPackageJson = require(path.join(lernaRoot, 'package.json'));
 
 module.exports = (configDir, configFile) => {
+    
     const reactAppSrcDir = path.join(configDir, '..', '..','..', 'src');
     const backupConfig = path.join(configDir, `backup.${path.parse(configFile).base}`);
-
+    log(`reactAppSrcDir: ${reactAppSrcDir}`)
+    log()
+    log(`backupConfig: ${backupConfig}`)
+    log()
     const settings = lernaPackageJson['babel-loader-lerna-cra'];
     const appsGlob = path.join(lernaRoot, settings.apps);
     const importsGlob = path.join(lernaRoot, settings.imports);
