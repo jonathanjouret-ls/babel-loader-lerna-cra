@@ -1,1 +1,1 @@
-module.exports = require('babel-loader-lerna-cra')(__dirname, __filename);
+module.exports = require('next-cra-loader')(__dirname, __filename);
