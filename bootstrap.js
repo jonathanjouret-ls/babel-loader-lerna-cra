@@ -34,25 +34,26 @@ const prettyFile = uglyPath => path.parse(uglyPath).base;
 const linkOverride = (reactAppDir, type) => {
     const configFile = webpackConfigPath(reactAppDir, type);
     const configBackup = webpackBackupPath(reactAppDir, type);
-    
-    if (fs.existsSync(configBackup)) {
-        // Backup already exists, copy cancelled.
-    } else {
-        log(`copying: ${prettyAppPath(configFile)}/... ${prettyFile(configFile)} => ${prettyFile(configBackup)}`);
-        fs.copySync(configFile, configBackup, {overwrite: false});
-    }
-
-    log(`copying: ${prettyAppPath(configFile)}/... ${prettyFile(webpackReplacementPath)} => ${prettyFile(configFile)}`);
-
-    if (fs.existsSync(configFile)) {
-        try {
-            fs.removeSync(configFile);
-        } catch (error) {
-            throw new Error('The symlink could not be removed!');
+    if(fs.existsSync('node_modules/react-scripts')){
+        if (fs.existsSync(configBackup)) {
+            // Backup already exists, copy cancelled.
+        } else {
+            log(`copying: ${prettyAppPath(configFile)}/... ${prettyFile(configFile)} => ${prettyFile(configBackup)}`);
+            fs.copySync(configFile, configBackup, {overwrite: false});
         }
-    }
 
-    fs.copySync(webpackReplacementPath, configFile, {overwrite: true});
+        log(`copying: ${prettyAppPath(configFile)}/... ${prettyFile(webpackReplacementPath)} => ${prettyFile(configFile)}`);
+
+        if (fs.existsSync(configFile)) {
+            try {
+                fs.removeSync(configFile);
+            } catch (error) {
+                throw new Error('The symlink could not be removed!');
+            }
+        }
+
+        fs.copySync(webpackReplacementPath, configFile, {overwrite: true});
+    }
 
     console.log();
 }
