@@ -1,6 +1,6 @@
 {
     "name": "next-cra-loader",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "Transpile Create-React-App imports in Lerna projects.",
     "keywords": [
         "create-reaact-app",
